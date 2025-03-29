@@ -32,47 +32,24 @@
     </main>
 
     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbx0KXFFfu2I4QjqyS3flPMEoux793r3NPR0ZCwG4YnDE8WrLaUHaCAjsxLgCGLXIwKe/exec';
-      const form = document.forms['ฺBlood Pressure'];
-  
-      form.addEventListener('submit', e => {
-          e.preventDefault();
-  
-          // แสดง SweetAlert "รอสักครู่"
-          Swal.fire({
-              title: "รอสักครู่",
-              text: "กำลังบันทึกข้อมูล...",
-              allowOutsideClick: false, // ปิดการคลิกนอกเพื่อปิด
-              showConfirmButton: false, // ไม่แสดงปุ่มยืนยัน
-              onBeforeOpen: () => {
-                  Swal.showLoading();
-              }
-          });
-  
-          fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-              .then(response => {
-                  // ลบข้อความใน demo ถ้ามีการใช้งานอยู่
-                  document.getElementById("demo").innerHTML = "";
-                  // รีเซ็ตฟอร์มเมื่อบันทึกข้อมูลเสร็จแล้ว
-                  form.reset();
-                  
-                  // ปิด SweetAlert "รอสักครู่"
-                  Swal.close();
-  
-                  // แสดงการแจ้งเตือนสำเร็จด้วย Swal.fire
-                  Swal.fire({
-                      title: "บันทึกข้อมูลเรียบร้อยแล้ว",
-                      icon: "success"
-                  });
-              })
-              .catch(error => {
-                  // ปิด SweetAlert "รอสักครู่" เมื่อเกิดข้อผิดพลาด
-                  Swal.close();
-                  console.error('Error!', error.message);
-              });
-      });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzuNZH-tyweRQxpqh3wtndqYiei9aqv66bF21iGoqnAAy236mQu5fMaMEogGk4EU5_D6Q/exec'
+        const form = document.forms['ฺBlood Pressure']
+        
+        form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => document.getElementById("demo").innerHTML = "<div class='alert alert-primary' role='alert'><b>ระบบบันทึกข้อมูลเรียบร้อยแล้ว !</b></div>",บันทึกจำนวนรถที่เข้าบำรุงรักษา.reset())
+                .catch(error => console.error('Error!', error.message))
+                Swal.fire({
+                 title: "บันทึกผลเรียบร้อย!",
+                    icon: "success"
+                });
+            })
+    </script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>         
+ </body>
+ </html>
   
   
       
