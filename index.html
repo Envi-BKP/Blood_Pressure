@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+    <style>
+        body, h1, h2, h3, h4, h5, h6  {
+          font-family: Kanit, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <center><h3>ฺBlood Pressure</h3></center>
+
+    <div class="container">
+        <form method="post" accept-charset="UTF-8" autocomplete="off" name="ฺBlood_Pressure">
+            <label for="Systolic Blood Pressure">Systolic Blood Pressure</label>
+            <input class="input" type="number" name="Systolic Blood Pressure" required autocomplete="off">
+
+            <label for="Diastolic Blood Pressure">Diastolic Blood Pressure</label>
+            <input class="input" type="number" name="Diastolic Blood Pressure" required autocomplete="off">
+
+            <label for="Pulse">Pulse</label>
+            <input class="input" type="number" name="Pulse" required autocomplete="off">
+            
+            <button class="button" type="submit" >Record</button
+            <p id="demo"></p>
+        </form>
+    </div>
+    </main>
+
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbx0KXFFfu2I4QjqyS3flPMEoux793r3NPR0ZCwG4YnDE8WrLaUHaCAjsxLgCGLXIwKe/exec';
+      const form = document.forms['ฺBlood Pressure'];
+  
+      form.addEventListener('submit', e => {
+          e.preventDefault();
+  
+          // แสดง SweetAlert "รอสักครู่"
+          Swal.fire({
+              title: "รอสักครู่",
+              text: "กำลังบันทึกข้อมูล...",
+              allowOutsideClick: false, // ปิดการคลิกนอกเพื่อปิด
+              showConfirmButton: false, // ไม่แสดงปุ่มยืนยัน
+              onBeforeOpen: () => {
+                  Swal.showLoading();
+              }
+          });
+  
+          fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+              .then(response => {
+                  // ลบข้อความใน demo ถ้ามีการใช้งานอยู่
+                  document.getElementById("demo").innerHTML = "";
+                  // รีเซ็ตฟอร์มเมื่อบันทึกข้อมูลเสร็จแล้ว
+                  form.reset();
+                  
+                  // ปิด SweetAlert "รอสักครู่"
+                  Swal.close();
+  
+                  // แสดงการแจ้งเตือนสำเร็จด้วย Swal.fire
+                  Swal.fire({
+                      title: "บันทึกข้อมูลเรียบร้อยแล้ว",
+                      icon: "success"
+                  });
+              })
+              .catch(error => {
+                  // ปิด SweetAlert "รอสักครู่" เมื่อเกิดข้อผิดพลาด
+                  Swal.close();
+                  console.error('Error!', error.message);
+              });
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  
+      
+      
+      
+</body>
+</html>
