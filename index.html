@@ -12,10 +12,10 @@
 </head>
 <body>
     <main>
-    <center><h3>ฺBlood Pressure</h3></center>
+    <center><h3>Blood_Pressure</h3></center>
 
     <div class="container">
-        <form method="post" accept-charset="UTF-8" autocomplete="off" name="ฺBlood_Pressure">
+        <form method="post" accept-charset="UTF-8" autocomplete="off" name="Blood_Pressure">
             <label for="Systolic Blood Pressure">Systolic Blood Pressure</label>
             <input class="input" type="number" name="Systolic Blood Pressure" required autocomplete="off">
 
@@ -26,19 +26,19 @@
             <input class="input" type="number" name="Pulse" required autocomplete="off">
             
             <button class="button" type="submit" >Record</button
-            <p id="demo"></p>
+            <p><id="demo"></p>
         </form>
     </div>
     </main>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbx0KXFFfu2I4QjqyS3flPMEoux793r3NPR0ZCwG4YnDE8WrLaUHaCAjsxLgCGLXIwKe/exec'
-        const form = document.forms['ฺBlood Pressure']
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx_LRxJ5TpZs1m5NkGd5j-2XEuqgATjnC33nqw5y_noxhHE2dI6beVSrv0_sKF59nMS/exec'
+        const form = document.forms['Blood_Pressure']
         
         form.addEventListener('submit', e => {
               e.preventDefault()
               fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => document.getElementById("demo").innerHTML = "<div class='alert alert-primary' role='alert'><b>ระบบบันทึกข้อมูลเรียบร้อยแล้ว !</b></div>",บันทึกจำนวนรถที่เข้าบำรุงรักษา.reset())
+                .then(response => document.getElementById("demo").innerHTML = "<div class='alert alert-primary' role='alert'><b>ระบบบันทึกข้อมูลเรียบร้อยแล้ว !</b></div>",Blood_Pressure.reset())
                 .catch(error => console.error('Error!', error.message))
                 Swal.fire({
                  title: "บันทึกผลเรียบร้อย!",
@@ -50,10 +50,3 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>         
  </body>
  </html>
-  
-  
-      
-      
-      
-</body>
-</html>
